@@ -1,0 +1,237 @@
+What Is SEO (Search Engine Optimization)? +New Updates
+Wondering if you can increase your site’s traffic with SEO?
+Well, I’ve got good news. The answer is almost certainly a resounding yes. And understanding the basics is the first step. 
+
+If terms like “keyword research,” “EEAT factors,” and “core updates” give you a thumping headache, don’t worry.
+By the end of this guide, you’ll understand all the techie jargon and how it fits together.  
+Key Takeaways
+SEO stands for search engine optimization. It’s the practice of helping websites rank higher in the organic results of Google and other search engines for your chosen—or “target”—keywords. 
+The goal of SEO is to optimize all of the factors—called ranking factors—that search engines measure to rank websites.
+SEO is important because it can be a large source of free traffic to your business and has a good ROI. 
+The more you meet search engines’ standards for high-quality, helpful content, the more keywords you’ll rank for. 
+There are six main steps in a standard SEO campaign:
+Technical site audit
+Site architecture review
+Keyword research
+Content and E-E-A-T
+Local SEO
+Links, citations, and brand mentions
+Google changes its search algorithm regularly. It’s best not to try to cheat it with questionable techniques, known in the industry as “black hat” tactics (above-board strategies are called “white hat”). 
+Patience is a must. While it is possible to see some results quickly, even in days for established sites, SEO is a long-term play. You’ll usually need to wait a few years for big wins. 
+AI Overviews and AI models like ChatGPT have only had a modest effect on search traffic. Optimizing to appear in search engine results and optimizing to appear in AI-generated results are practically the same process, for now at least. 
+What Is SEO?
+SEO stands for search engine optimization. It is the process of improving the signals—also called ranking factors—that search engines use to gauge the quality and relevance of your website pages. 
+These include attributes such as content quality, off-site factors like number of referring links, and measures of technical performance like site speed. When search engines like Google and Bing see your pages as authoritative and relevant, they’re more likely to appear in the top results for keyword queries. 
+The term “search engine results page” is abbreviated to SERP. There are three primary areas where your site can appear in the SERPs: alongside the AI overview (which is now considered the first position), the organic “long blue link” results, and the “People also ask” section. 
+
+Why Is SEO Important?
+SEO is important because it can drive significant amounts of free, targeted traffic. 
+We looked at data from multiple sources and discovered that Google processes 13.7 billion searches per day. Baidu, China’s top search engine, comes second with five billion searches. 
+
+It shouldn’t be a surprise, then, that search engines are the biggest source of traffic for most websites. In 2025, search accounts for 41% of visits to a typical site. 
+
+Even better, SEO has a very strong ROI. We found that new sites see an average ROI of 39.8% in the third year after investing in SEO. Established sites (over three years old) see a return on investment almost immediately—22.1% in the first year. 
+
+How Do You Measure SEO?
+There are several SEO metrics, such as traffic, page speed, and number of backlinks, that measure the individual strands of an SEO campaign. However, the main indicators of SEO success are rankings—the positions of pages in the SERPs for target keywords.
+It’s not uncommon to hear people talk about optimizing a page for a particular set of keywords. And there are specialized tools—like Ubersuggest—that track these rankings.
+
+For example, a golfing hobby site will want to see its review of the “best golf balls” appear in the top-five results. A luxury handbag maker will be keen to see its homepage rank for “buy luxury handbags.”
+Nearly all search engine queries fall into one of four categories:
+Informational: Requests for information, like “what is SEO?”
+Navigational: Searches for specific websites, like “Netflix” or “ New York Times.”
+Commercial: Informational searches to assist with product consideration, like “PlayStation vs Xbox.”
+Transactional: Searches made when a person is ready to buy a specific product, like “buy new iPhone.”
+Our in-house research shows that the vast majority of searches—4.2 billion—are informational. That’s why a lot of SEO focuses on improving content and information quality, not just technical website performance. 
+
+How Is SEO Different From PPC and SEM?
+Ah, how marketers love their acronyms (they’re actually initialisms, but that’s another discussion). SEO is sometimes confused with SEM and PPC, but there are some key differences. 
+Here’s a quick overview of what sets these strategies apart: 
+SEO stands for search engine optimization. It’s a strategy for generating free traffic through organic, earned listings on search engine results pages. 
+PPC stands for pay per click advertising. It involves running ads and paying for clicks to your website. Google displays PPC ads alongside organic results in the SERPs under the “Sponsored” label.
+
+SEM stands for search engine marketing. It’s a catch-all term that includes both SEO and PPC.
+Doing SEO doesn’t mean you can’t run PPC ads. In fact, my team and I found that the best strategies combine both SEO and PPC. While SEO has a comparatively higher ROI of 813%, PPC delivers a very respectable 404%. 
+
+How Do Search Engines Work?
+So, how do those big old search engines work?
+While nobody has direct insight into the algorithms of search engines like Google, we do have a pretty solid high-level understanding of how they operate. 
+
+Here’s an overview of how search engines find and process web pages:
+Bots crawl the web to find and analyze website pages. 
+These pages are categorized in the search engine’s index, a type of database. 
+A user enters a query like “what is SEO?” into the search engine. 
+An algorithm interprets the query and selects the best content from the index.  
+The search engine returns a listing of the most relevant results. 
+When selecting which results to display in search results, search engine algorithms use ranking factors and signals. These are criteria used to find the website pages that will best meet a search query’s intent.
+
+Google has outlined five areas that it looks at when filtering possible results:
+Meaning: The intent behind a specific query. 
+Relevance: The degree to which content satisfies the intent of a query.
+Quality: The level to which content “demonstrates expertise, authoritativeness and trustworthiness.”
+Usability: The ease with which users can access and navigate content on a site. 
+Context: “Outside” factors that might influence the usefulness of results, such as the geographical location of the searcher. 
+Inside the Strange World of SEO Detective Work
+Despite it not being public information, many experts have put together a partial picture of how search engines, especially Google, work at an operational level. 
+They do this by trawling through leaks, exploits (which are essentially legal hacks), patents, their own testing, and official Google announcements. And this detective work can get pretty interesting. 
+For example, we know Google doesn’t just rely on on-site signals to rank pages. It also measures signals “around” a website. One example is user experience, which looks at how searchers interact with the results. 
+In a recent Google documentation leak, often referred to as the “Warehouse API leak,” we got a deeper insight into how this plays out. Google has several click-related modules in the documentation, including “goodClicks,” “badClicks,” and “lastLongestClicks.” 
+
+This means that Google tracks how long users are on your site when they click on it. If a lot of users instantly leave, say, because your piece has bad search intent or UX, your site might be punished.
+Brand visibility is another example of Google using off-site signals. It was confirmed when SEO expert Mark Williams-Cook found a Google exploit, a vulnerability that reveals “secret” information. 
+Google tracks how often your brand is mentioned in search queries and assigns a score based on its findings.  
+
+The idea of a site quality score was also validated by a Google patent that was filed in 2012. Analyzing patents is one of the most common advanced methods of gaining insights into how search engines work. 
+
+How Google Algorithm Updates Impact SEO
+Amid all this sleuthing, however, it’s important to note that search engines are constantly changing. It’s far better to focus on the fundamentals of creating exceptional content and a fast, user-friendly site. 
+If you’re new to SEO, you don’t need to worry about these complex methods. If anything, gaming the algorithm is more likely to backfire. 
+We found that the number of Google updates has increased substantially over the last ten years, from 1000 in 2015 to 5429 in 2024. 
+
+While most updates are small changes that the average site owner won’t notice, some—called core updates—are much more significant.
+These can fundamentally change the way Google works and cause large changes in rankings, especially for those sites relying on black hat tactics. 
+Here’s a timeline of the most important Google updates: 
+
+Panda (2011): Penalized low-quality content
+Penguin (2012): Targeted spammy link building
+Hummingbird (2013): Focused on better understanding the intent and meaning behind search queries
+RankBrain (2015): Introduced machine learning to the algorithm
+Medic (2018): Checked for the authority of sites containing professional information
+BERT (2019): Added new context signals to search queries
+Helpful Content (2022): Deranked low-quality content
+March 2024 Core Update: Doubled down on attempts to manipulate search rankings
+While it’s worth keeping abreast of major changes, don’t over-focus on them. As always, prioritize the fundamentals. As you can see from the sample above, these updates are all about improving quality. 
+What Are the Pillars and Core Skills of SEO?
+
+There are three main categories—or pillars—of SEO you need to focus on: on-page SEO, off-page SEO, and technical SEO. When all are present, they work together to create a solid foundation for your SEO strategy. 
+Here’s what each of these pillars stands for:
+On-page SEO: Creating and optimizing high-quality content
+Off-page SEO: Enhancing your website’s reputation through link building and social media
+Technical SEO: Improving your site’s technical aspects like page speed and site structure
+Effectively “building” and maintaining each of these pillars draws on a wide set of skills, all of which work together. 
+Here’s an overview of the most important SEO skills:
+Keyword research: Identifying valuable keywords that you can rank for that will generate traffic and customers. 
+Content creation and copywriting: The creation of valuable, original, keyword-optimized content—whether for articles, ecommerce descriptions, or landing pages. 
+Data analysis: Tracking and analysis of key SEO metrics such as traffic, rankings, and bounce rates. It requires proficiency with platforms like Google Analytics and Google Search Console. 
+Link building and digital PR: Running outreach and publicity campaigns to generate links and media coverage. Often, this involves promoting original and insightful content.
+Coding and technical SEO: The ability to optimize backend elements of a website (like JavaScript code and site structure) to improve factors like speed, crawlability, and user experience. 
+What Are the Different SEO Specializations?
+There are several important specialized applications that fall under the umbrella of SEO. If your site falls into one of these categories, you’ll need to apply focused tactics for the best results. 
+Here are the main SEO specializations: 
+Local SEO: Optimizing pages to rank for local keywords like “pizza takeaway near me.” The “3-Pack” is prime Google real estate for local searches. 
+
+Ecommerce SEO: Ranking the content of ecommerce sites (like product, category, and sales landing pages) for commercial and transactional queries, including in Google Shopping results. 
+
+Enterprise SEO: SEO designed to deal with the complexities of large sites with multiple page types, subdomains, and even languages. 
+
+Multilingual SEO: A specialized technical skillset for optimizing a single site for multiple languages or regions. Apple, for example, is available in 126 languages.
+
+News SEO: SEO that focuses on ranking content quickly in areas search engines have set aside for news stories, like Google News. 
+
+Video SEO: Optimizing videos (mainly on YouTube) so that they appear in Google rankings for relevant queries. 
+
+Elements of an SEO Campaign: A Complete Breakdown
+Now it’s time to learn how SEO breaks down into its component parts. Let’s look at all of the things you need to optimize as part of a comprehensive SEO strategy.
+
+Technical Site Audit
+A technical audit uncovers site-wide performance issues with your website. Issues span everything from a handful of broken links to universally slow pages. 
+My team and I found that the top technical issues identified during a site audit were 3XX (301 and 302) and HTTPS redirects, missing page elements, slow page speeds, and broken links. 
+
+A technical SEO audit looks at all the following areas to identify problems: 
+Crawlability: The more internal links you have between pages, the easier it is for Google to crawl, understand, and index your website. Missing sitemaps, which list all of your site’s pages, are commonly flagged. 
+Redirects: Redirects slow down page load times and can often prevent equitable distribution of link juice through your site. 
+Duplicate content: It doesn’t matter if short paragraphs or phrases are repeated on your website, but it’s best practice to avoid reposting entire blog articles anywhere else online or hosting two pages with identical or nearly identical content, as it can cause pages to “compete” with each other. 
+Mobile responsiveness: Google indexes for mobile first, which means you need to create a site that performs well on mobile. Mobile responsiveness is a major ranking factor. 
+Speed: Google prioritizes page speed and usability, which are encapsulated in a set of metrics called Core Web Vitals. If your site or certain elements load too slowly, Google may penalize you. PageSpeed Insights is an excellent tool for optimizing speed. 
+Keyword Research
+Keyword research is the process of finding search queries to build content around. A keyword research tool like Ubersuggest provides the monthly search volume and ranking difficulty of keywords. 
+
+However, there’s a lot more to keyword selection than going through your keyword research tool and choosing every keyword on the list. 
+My advice is to opt for long-tail keywords and avoid hyper-competitive queries. Long-tail keywords are search terms with three or more words. For example, while a head term may say something like “pet supplies,” a long-tail keyword would be more like “pet supplies for exotic birds.” 
+Also keep in mind that even larger sites have opportunities to rank for keywords. The “keyword gap” of small sites is greatest at 60%, but larger sites are missing out on 37% of their available keyword pool.
+
+Content Creation and On-Page Elements
+Great content is foundational to SEO. It’s nearly impossible to rank your site without it. After all, Google’s goal is to “deliver the most relevant and reliable information available.” 
+There are three elements to focus on when creating content: 
+Quality: Google’s set of E-E-A-T criteria summarizes what makes good content. It stands for “Experience, Expertise, Authority, and Trustworthiness.” This content incorporates first-hand experience, solid author credentials, and a high degree of accuracy. We also found that slightly longer content worked best for SEO, but length should always be matched to intent. 
+
+Intent: You also need to make sure your content matches the intent behind each search. If all the results on page one are blog posts, you’d better write a blog post. Conversely, if product pages are ranking in the top positions, a blog probably won’t cut it. Competitor research is key for uncovering intent. 
+Freshness: The more up-to-date your content is, the better. Going through and updating your content for accuracy, fixing any broken links, and refreshing old data with new statistics are all ways to show Google your piece of content still deserves a spot on page one. My research shows that quarterly or yearly is the best frequency for performing refreshes. 
+
+In addition to the content itself, there are several HTML elements that should be optimized as part of your SEO strategy. 
+Here’s an overview of the most important on-page elements: 
+Title tag: Tells search engines what your page is about and usually displays in search results. 
+Meta description: Describes your page to search engines. While it’s not a ranking factor, it often shows up in Google results under your title tag.
+Schema: A form of markup that helps search engines understand more about your page.
+Heading tags: H1s, H2s, H3s, and so on that add hierarchy to your content, making it easy for search engines and users to read.
+Alt text: Describes the images in your article to search engines and screen readers.
+URL slug: The end of the URL. It tells Google what the content is about.
+While it’s tempting to add as many keywords as possible to these HTML elements, be careful of keyword stuffing. There’s nothing worse than a keyword-stuffed meta description that reads horribly. Google will see right through it and may even penalize you.
+Local SEO
+Local SEO may or may not form part of your SEO strategy. It’s only relevant if you target customers within a specific location. 
+Instead of trying to rank your website exclusively in the “normal” SERPs, local SEO also aims to rank your business on the Places map and “local pack” listings.
+
+Our research shows that the following local SEO ranking factors are most important:
+The proximity of your address to the search point
+Your business category
+Keywords in your business title
+Having a city-based address
+Your business profile rating
+The number of brand queries that searchers make
+
+Make sure to fill out your Google Business Profile in detail. That includes listing your website, phone number, address, and opening hours, as well as including photos of your business.
+
+Citations are also important. A NAP (Name, Address, and Phone) citation is any mention of your business name, address, and phone number online. You can think of them as local SEO backlinks—and the more citations you have, the better. Adding listings to local business directories is the best way of acquiring these. 
+Online reviews are the final important local SEO ranking factor. Google wants to send its users to great local businesses, so the more five-star reviews your business has, the better.
+Links, Citations, and Brand Mentions
+A backlink is a link from one website to another. Gaining backlinks from high-authority websites is a strong way to improve your SEO. Google sees it as a vote for your website. 
+Pay particular attention to link quality. It’s better to have a small number of links from very high-authority websites (like news publications, respected industry publications, and thought leaders in the space) than thousands of low-quality spammy links. 
+Here are my tips for building links the right way:
+Don’t take shortcuts: Earning links takes time. You need to build relationships, create great content, pitch yourself, and tell site owners how you can provide value to their site.
+Look for broken link opportunities: This is one way to add value and gain a link by improving a website’s user experience.
+Don’t forget internal linking: Internal linking is an important piece of the puzzle, too. If in doubt, aim for a maximum of about one link per every 100 words of content, including both internal and any external links.
+As far as content goes, my team and I found that original research and tools lead the way in generating backlinks. Tools in particular generate an average of 319 links. 
+
+Also consider digital PR initiatives. This typically involves running initiatives like giveaways or creating highly original content like proprietary research. 
+You then reach out to journalists asking for coverage. It’s a form of earned media and can be highly effective for generating brand buzz and backlinks. HubSpot’s annual industry report is an excellent example of a content asset that generates earned media. 
+
+Finally, don’t overlook social media. In many ways, social media platforms have become search engines in their own right and compete with Google for traffic. Younger generations, in particular, get all of their information from TikTok, which means having a presence on these platforms can be just as important for your brand as a presence on Google. 
+How Are AI and AI Overviews (AIOs) Changing SEO?
+It’s the million-dollar question. What does AI mean for search engines? There’s no shortage of “experts” with an answer. Many have said it’s over for SEO. Others are more optimistic.
+I’m in the optimistic camp. I’ve conducted a lot of research in this area, and the results are clear. SEO is still one of the most effective digital marketing strategies going.
+Google recently rolled out AI overviews. These now occupy the first position in SERPs and are an example of search generative intelligence (SGE), which summarizes existing content. 
+
+We looked at a little over 1000 keywords and compared pre-AI overview and post-AI overview click-through rates. We saw only a modest decrease in clicks across all the results, including from 24.9% to 18.6% for the first position.
+
+This decline is likely due to an increase in zero-click searches, which happen when users enter a query but don’t click on any SERP links. Searches with clicks fell from 42.99% to 40.7%. 
+
+You might also be wondering about AI search, especially SearchGPT, ChatGPT’s “search engine.” The phrase generative engine optimization (GEO), which refers to optimizing to appear in AI-generated results, has started to crop up more. 
+The reality is that searchers still overwhelmingly prefer Google. We ran a survey and found that 85% of ChatGPT users still use Google for search. 
+
+What’s even more interesting is that GEO is practically the same as SEO, for now at least. I put together a list of SearchGPT ranking factors and found no practical differences. 
+So here’s the good news: as long as you’re doing SEO right, you’re optimizing for LLMs too. 
+
+Conclusion
+Hopefully, you now have a solid understanding of the basics of SEO marketing and are eager to learn more. 
+Don’t be afraid to return to this section as many times as you need to during your SEO marketing journey. 
+In fact, go ahead and bookmark it. There’s a lot to pick up, and it certainly doesn’t hurt to remind yourself of SEO basics, core principles, and key terminology from time to time.
+Frequently Asked Questions
+What is SEO optimization?
+Search engine optimization is the process of improving your website’s organic rankings in search engines like Google and Bing. 
+Should you hire an SEO agency?
+While it’s entirely possible to do SEO on your own, agencies are affordable and cater to a range of business types. Get in touch with us at NP Digital to chat about our SEO packages. 
+Where can I learn more about SEO?
+There are lots of great resources online for learning more about SEO. I’d recommend my free SEO Unlocked course, which will guide you through your first SEO campaign. Search Engine Land and Search Engine Journal are also excellent resources. 
+How long does it take for SEO to work?
+SEO success tends not to happen quickly. Depending on your domain authority and strategy, it can take between one and six months for most keywords. That’s why you need to have a long-term plan when it comes to SEO, especially if you are in a competitive market like finance or software.
+What is the most important factor in SEO marketing?
+Google analyzes hundreds of factors when ranking websites. If a single factor made a significant difference, everyone would be optimizing it. But, if I had to pick something you should focus on, it would be providing quality information. You can optimize every aspect of your site, but it’s all for nothing if your content is trash—searchers won’t be interested in you.
+What is “black hat” SEO?
+Black hat SEO uses spammy optimization techniques that try to trick Google into ranking your website. While a lot of these concepts have fallen out of use, some are still around. One example is spammy link building. This could be something like purchasing a Fiverr package promising you 5,000 links in 24 hours.
+How do I rank faster on Google?
+The quickest way to rank higher on Google is to fix your site’s biggest issues. Got no links? Building links could see your rankings soar. Have you focused more on content quantity over quality? Now is the time to slow down and evaluate which content needs to be updated, consolidated, or removed. 
+Can I rank a website without SEO?
+Absolutely. There are thousands of websites ranking in Google that have never targeted a keyword or built a link. That being said, they are probably inadvertently doing excellent SEO by providing great content and writing about topics people are interested in.
+How much does SEO cost?
+SEO can be as cheap or expensive as you make it. You can hire a professional to handle it for you, for example, or you can do everything yourself. Doing it yourself will take a lot longer, and you’ll have to account for the learning curve.
+
