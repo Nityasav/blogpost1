@@ -43,12 +43,14 @@ function LoadingSpinner() {
   );
 }
 
+const queryParsers = {
+  primary: parseAsString.withDefault(""),
+  secondary: parseAsString.withDefault(""),
+  prompt: parseAsString.withDefault(""),
+} as const;
+
 export function BlogGeneratorClient() {
-  const [query, setQuery] = useQueryStates<QueryState>({
-    primary: parseAsString.withDefault(""),
-    secondary: parseAsString.withDefault(""),
-    prompt: parseAsString.withDefault(""),
-  });
+  const [query, setQuery] = useQueryStates(queryParsers);
 
   const [blog, setBlog] = useState<BlogGenerationResult | null>(null);
   const [editedHtml, setEditedHtml] = useState<string | null>(null);

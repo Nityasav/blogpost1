@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import type { BlogGenerationResult, BlogSource } from "@/lib/blog-generator";
 import { Badge } from "@/components/ui/badge";
@@ -22,7 +22,7 @@ function escapeHtml(value: string): string {
 
 function renderRichTextNodes(text: string, sourcesMap: Map<string, BlogSource>) {
   const regex = /<<([^|>]+)\|([^>]+)>>/g;
-  const nodes: Array<string | JSX.Element> = [];
+  const nodes: Array<string | ReactNode> = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 

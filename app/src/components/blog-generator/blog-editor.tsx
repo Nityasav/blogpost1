@@ -67,9 +67,7 @@ export function BlogEditor({ blog, initialHtml, onSave }: BlogEditorProps) {
 
   useEffect(() => {
     if (editor && initialContent && editor.getHTML() !== initialContent) {
-      editor.commands.setContent(initialContent, false, {
-        preserveWhitespace: "full",
-      });
+      editor.commands.setContent(initialContent, false);
     }
   }, [editor, initialContent]);
 
@@ -117,7 +115,7 @@ export function BlogEditor({ blog, initialHtml, onSave }: BlogEditorProps) {
     { level: 2, icon: Heading2 },
     { level: 3, icon: Heading3 },
     { level: 4, icon: Heading4 },
-  ];
+  ] as const;
 
   return (
     <div className="mx-auto w-full max-w-4xl space-y-5 rounded-[30px] border border-[#2A33A4]/20 bg-white/95 p-6 shadow-[0_35px_90px_rgba(42,51,164,0.08)] md:p-8">
