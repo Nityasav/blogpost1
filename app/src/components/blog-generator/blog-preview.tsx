@@ -20,7 +20,7 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
-function renderParagraphNodes(text: string, sourcesMap: Map<string, BlogSource>) {
+function renderRichTextNodes(text: string, sourcesMap: Map<string, BlogSource>) {
   const regex = /<<([^|>]+)\|([^>]+)>>/g;
   const nodes: Array<string | JSX.Element> = [];
   let lastIndex = 0;
@@ -60,10 +60,10 @@ function renderParagraphNodes(text: string, sourcesMap: Map<string, BlogSource>)
     nodes.push(trailing);
   }
 
-  return nodes;
+  return nodes.length ? nodes : [text];
 }
 
-function renderParagraphHtml(text: string, sourcesMap: Map<string, BlogSource>): string {
+function renderRichTextHtml(text: string, sourcesMap: Map<string, BlogSource>): string {
   const regex = /<<([^|>]+)\|([^>]+)>>/g;
   let html = "";
   let lastIndex = 0;
@@ -111,11 +111,11 @@ export function serializeBlogArticleHtml(blog: BlogGenerationResult, sourcesMap?
         : "";
 
       const paragraphsHtml = section.paragraphs
-        .map((paragraph) => `<p>${renderParagraphHtml(paragraph, map)}</p>`)
+        .map((paragraph) => `<p>${renderRichTextHtml(paragraph, map)}</p>`)
         .join("\n");
 
       const callToActionHtml = section.callToAction
-        ? `<p><strong>${escapeHtml(section.callToAction)}</strong></p>`
+        ? `<p><strong>${renderRichTextHtml(section.callToAction, map)}</strong></p>`
         : "";
 
       return `
@@ -134,7 +134,7 @@ export function serializeBlogArticleHtml(blog: BlogGenerationResult, sourcesMap?
       (faq) => `
         <section>
           <h3>${escapeHtml(faq.question)}</h3>
-          <p>${escapeHtml(faq.answer)}</p>
+          <p>${renderRichTextHtml(faq.answer, map)}</p>
         </section>
       `,
     )
@@ -154,12 +154,12 @@ export function serializeBlogArticleHtml(blog: BlogGenerationResult, sourcesMap?
   <article>
     <h1>${escapeHtml(blog.title)}</h1>
     ${blog.meta?.keywords?.length ? `<p><strong>Keywords:</strong> ${escapeHtml(blog.meta.keywords.join(", "))}</p>` : ""}
-    <p>${escapeHtml(blog.intro)}</p>
+    <p>${renderRichTextHtml(blog.intro, map)}</p>
     <section>
       <h2>TL;DR</h2>
-      <p>${escapeHtml(blog.tldr.summary)}</p>
+      <p>${renderRichTextHtml(blog.tldr.summary, map)}</p>
       <ul>
-        ${blog.tldr.bulletPoints.map((item) => `<li>${escapeHtml(item)}</li>`).join("\n")}
+        ${blog.tldr.bulletPoints.map((item) => `<li>${renderRichTextHtml(item, map)}</li>`).join("\n")}
       </ul>
     </section>
     <section>
@@ -171,7 +171,7 @@ export function serializeBlogArticleHtml(blog: BlogGenerationResult, sourcesMap?
     ${sectionsHtml}
     <section>
       <h2>Conclusion</h2>
-      <p>${escapeHtml(blog.conclusion)}</p>
+      <p>${renderRichTextHtml(blog.conclusion, map)}</p>
     </section>
     <section>
       <h2>FAQ</h2>
@@ -245,7 +245,7 @@ export function BlogPreview({ blog, customHtml }: BlogPreviewProps) {
         </div>
         <article
           ref={contentRef}
-          className="prose mx-auto w-full max-w-3xl text-base leading-8 text-foreground prose-headings:mt-8 prose-img:rounded-2xl prose-a:text-primary hover:prose-a:text-primary/80 dark:prose-invert"
+          className="blog-content mx-auto w-full max-w-3xl text-base text-foreground"
           dangerouslySetInnerHTML={{ __html: customHtml }}
         />
       </div>
@@ -269,15 +269,15 @@ export function BlogPreview({ blog, customHtml }: BlogPreviewProps) {
             ))}
           </div>
           <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{blog.title}</h1>
-          <p className="text-muted-foreground">{blog.intro}</p>
+          <p className="text-muted-foreground">{renderRichTextNodes(blog.intro, sourcesMap)}</p>
         </header>
 
         <section className="space-y-3">
           <h2 className="text-2xl font-semibold">TL;DR</h2>
-          <p>{blog.tldr.summary}</p>
+          <p>{renderRichTextNodes(blog.tldr.summary, sourcesMap)}</p>
           <ul className="list-disc space-y-2 pl-6">
             {blog.tldr.bulletPoints.map((item, index) => (
-              <li key={index}>{item}</li>
+              <li key={index}>{renderRichTextNodes(item, sourcesMap)}</li>
             ))}
           </ul>
         </section>
@@ -321,18 +321,18 @@ export function BlogPreview({ blog, customHtml }: BlogPreviewProps) {
             ) : null}
 
             {section.paragraphs.map((paragraph, index) => (
-              <p key={index}>{renderParagraphNodes(paragraph, sourcesMap)}</p>
+              <p key={index}>{renderRichTextNodes(paragraph, sourcesMap)}</p>
             ))}
 
             {section.callToAction ? (
-              <p className="font-medium text-primary">{section.callToAction}</p>
+              <p className="font-medium text-primary">{renderRichTextNodes(section.callToAction, sourcesMap)}</p>
             ) : null}
           </section>
         ))}
 
         <section className="space-y-3">
           <h2 className="text-2xl font-semibold">Conclusion</h2>
-          <p>{blog.conclusion}</p>
+          <p>{renderRichTextNodes(blog.conclusion, sourcesMap)}</p>
         </section>
 
         <section className="space-y-3">
@@ -340,7 +340,7 @@ export function BlogPreview({ blog, customHtml }: BlogPreviewProps) {
           {blog.faqs.map((faq, index) => (
             <div key={index} className="space-y-1">
               <h3 className="text-lg font-semibold">{faq.question}</h3>
-              <p className="text-muted-foreground">{faq.answer}</p>
+              <p className="text-muted-foreground">{renderRichTextNodes(faq.answer, sourcesMap)}</p>
             </div>
           ))}
         </section>
