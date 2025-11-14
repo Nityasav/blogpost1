@@ -19,21 +19,6 @@ type QueryState = {
   prompt: string;
 };
 
-const deliveryNotes = [
-  {
-    label: "Outputs",
-    detail: "TL;DR, FAQ, CTA, citations, imagery",
-  },
-  {
-    label: "Format",
-    detail: "Rich HTML + inline editor handoff",
-  },
-  {
-    label: "Review",
-    detail: "Executive-ready in under five minutes",
-  },
-];
-
 function LoadingSpinner() {
   return (
     <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -205,14 +190,6 @@ export function BlogGeneratorClient() {
             </div>
           </form>
 
-          <div className="grid gap-4 border-t border-[#2A33A4]/15 pt-6 text-sm text-[#2A33A4]/75 md:grid-cols-3">
-            {deliveryNotes.map((note) => (
-              <div key={note.label} className="rounded-2xl border border-[#2A33A4]/15 bg-white/80 px-4 py-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#2A33A4]/60">{note.label}</p>
-                <p className="mt-2 text-sm">{note.detail}</p>
-              </div>
-            ))}
-          </div>
         </CardContent>
       </Card>
 
