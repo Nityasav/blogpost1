@@ -1,19 +1,13 @@
 import { z } from "zod";
 
+const nonEmptyString = (field: string, hint?: string) =>
+  z.string().min(1, hint ?? `${field} cannot be empty. Set it in your .env.local.`);
+
 const envSchema = z.object({
-  CLAUDE_API_KEY: z
-    .string({ required_error: "CLAUDE_API_KEY is required" })
-    .min(1, "CLAUDE_API_KEY cannot be empty. Set it in your .env.local."),
-  CLAUDE_MODEL: z
-    .string({ required_error: "CLAUDE_MODEL is required" })
-    .min(1, "CLAUDE_MODEL cannot be empty")
-    .default("claude-3-5-sonnet-20241022"),
-  EXA_API_KEY: z
-    .string({ required_error: "EXA_API_KEY is required" })
-    .min(1, "EXA_API_KEY cannot be empty. Set it in your .env.local."),
-  UNSPLASH_ACCESS_KEY: z
-    .string({ required_error: "UNSPLASH_ACCESS_KEY is required" })
-    .min(1, "UNSPLASH_ACCESS_KEY cannot be empty. Set it in your .env.local."),
+  CLAUDE_API_KEY: nonEmptyString("CLAUDE_API_KEY"),
+  CLAUDE_MODEL: z.string().min(1, "CLAUDE_MODEL cannot be empty").default("claude-3-5-sonnet-20241022"),
+  EXA_API_KEY: nonEmptyString("EXA_API_KEY"),
+  UNSPLASH_ACCESS_KEY: nonEmptyString("UNSPLASH_ACCESS_KEY"),
 });
 
 export interface AppEnv {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import type { BlogGenerationResult, BlogSource } from "@/lib/blog-generator";
 import { Badge } from "@/components/ui/badge";
@@ -22,7 +22,7 @@ function escapeHtml(value: string): string {
 
 function renderRichTextNodes(text: string, sourcesMap: Map<string, BlogSource>) {
   const regex = /<<([^|>]+)\|([^>]+)>>/g;
-  const nodes: Array<string | JSX.Element> = [];
+  const nodes: Array<string | ReactNode> = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
@@ -233,19 +233,19 @@ export function BlogPreview({ blog, customHtml }: BlogPreviewProps) {
       console.error("Clipboard copy failed", error);
       setCopied(false);
     }
-  }, [htmlForCopy]);
+    }, [htmlForCopy]);
 
   if (customHtml) {
     return (
       <div className="mx-auto flex max-w-4xl flex-col gap-6">
         <div className="flex justify-end">
-          <Button onClick={handleCopy} variant="secondary">
-            {copied ? "Copied!" : "Copy Blog"}
+          <Button onClick={handleCopy} variant="secondary" className="px-6">
+            {copied ? "Copied" : "Copy Blog"}
           </Button>
         </div>
         <article
           ref={contentRef}
-          className="blog-content mx-auto w-full max-w-3xl text-base text-foreground"
+          className="blog-content rounded-3xl border border-[#2A33A4]/20 bg-white/95 p-8 text-base text-[#2A33A4] shadow-[0_30px_80px_rgba(42,51,164,0.08)]"
           dangerouslySetInnerHTML={{ __html: customHtml }}
         />
       </div>
@@ -255,109 +255,117 @@ export function BlogPreview({ blog, customHtml }: BlogPreviewProps) {
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-6">
       <div className="flex justify-end">
-        <Button onClick={handleCopy} variant="secondary">
-          {copied ? "Copied!" : "Copy Blog"}
+        <Button onClick={handleCopy} variant="secondary" className="px-6">
+          {copied ? "Copied" : "Copy Blog"}
         </Button>
       </div>
-      <article ref={contentRef} className="mx-auto flex w-full max-w-3xl flex-col gap-8 text-base leading-8 text-foreground">
-        <header className="flex flex-col gap-4">
-          <div className="flex flex-wrap gap-2">
-            {blog.meta?.keywords?.map((keyword) => (
-              <Badge key={keyword} variant="secondary" className="bg-muted text-muted-foreground">
-                {keyword}
-              </Badge>
-            ))}
-          </div>
-          <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{blog.title}</h1>
-          <p className="text-muted-foreground">{renderRichTextNodes(blog.intro, sourcesMap)}</p>
-        </header>
+        <article
+          ref={contentRef}
+          className="mx-auto flex w-full flex-col gap-8 rounded-3xl border border-[#2A33A4]/20 bg-white/95 p-8 text-base leading-8 text-[#2A33A4] shadow-[0_30px_80px_rgba(42,51,164,0.08)]"
+        >
+          <header className="flex flex-col gap-4">
+            <div className="flex flex-wrap gap-2">
+              {blog.meta?.keywords?.map((keyword) => (
+                <Badge key={keyword} variant="secondary" className="tracking-[0.25em] text-[10px]">
+                  {keyword}
+                </Badge>
+              ))}
+            </div>
+            <h1 className="text-3xl font-semibold tracking-tight text-[#2A33A4] md:text-4xl">{blog.title}</h1>
+            <p className="text-[#2A33A4]/70">{renderRichTextNodes(blog.intro, sourcesMap)}</p>
+          </header>
 
-        <section className="space-y-3">
-          <h2 className="text-2xl font-semibold">TL;DR</h2>
-          <p>{renderRichTextNodes(blog.tldr.summary, sourcesMap)}</p>
-          <ul className="list-disc space-y-2 pl-6">
-            {blog.tldr.bulletPoints.map((item, index) => (
-              <li key={index}>{renderRichTextNodes(item, sourcesMap)}</li>
-            ))}
-          </ul>
-        </section>
+          <section className="space-y-3">
+            <h2 className="text-2xl font-semibold text-[#2A33A4]">TL;DR</h2>
+            <p>{renderRichTextNodes(blog.tldr.summary, sourcesMap)}</p>
+            <ul className="list-disc space-y-2 pl-6">
+              {blog.tldr.bulletPoints.map((item, index) => (
+                <li key={index}>{renderRichTextNodes(item, sourcesMap)}</li>
+              ))}
+            </ul>
+          </section>
 
-        <section className="space-y-3">
-          <h2 className="text-2xl font-semibold">Table of Contents</h2>
-          <ol className="list-decimal space-y-2 pl-6">
-            {blog.sections.map((section) => (
-              <li key={section.id}>{section.heading}</li>
-            ))}
-          </ol>
-        </section>
+          <section className="space-y-3">
+            <h2 className="text-2xl font-semibold text-[#2A33A4]">Table of Contents</h2>
+            <ol className="list-decimal space-y-2 pl-6 text-[#2A33A4]/80">
+              {blog.sections.map((section) => (
+                <li key={section.id}>{section.heading}</li>
+              ))}
+            </ol>
+          </section>
 
-        {blog.sections.map((section) => (
-          <section key={section.id} className="space-y-4">
-            <h2 className="text-2xl font-semibold">{section.heading}</h2>
-            {section.image ? (
-              <figure className="w-full">
-                <Image
-                  src={section.image.url}
-                  alt={section.image.alt}
-                  width={section.image.width}
-                  height={section.image.height}
-                  className="w-full rounded-2xl object-cover"
-                  style={{ backgroundColor: section.image.color ?? "#f8fafc" }}
-                  loading="lazy"
-                />
-                <figcaption className="mt-2 text-sm text-muted-foreground">
-                  Photo by{" "}
+          {blog.sections.map((section) => (
+            <section key={section.id} className="space-y-4">
+              <h2 className="text-2xl font-semibold text-[#2A33A4]">{section.heading}</h2>
+              {section.image ? (
+                <figure className="w-full">
+                  <Image
+                    src={section.image.url}
+                    alt={section.image.alt}
+                    width={section.image.width}
+                    height={section.image.height}
+                    className="w-full rounded-2xl border border-[#2A33A4]/10 object-cover"
+                    style={{ backgroundColor: section.image.color ?? "#ffffff" }}
+                    loading="lazy"
+                  />
+                  <figcaption className="mt-2 text-sm text-[#2A33A4]/60">
+                    Photo by{" "}
+                    <a
+                      href={`${section.image.photographerProfile}?utm_source=claude_unsplash_generator&utm_medium=referral`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium underline underline-offset-4"
+                    >
+                      {section.image.photographerName}
+                    </a>{" "}
+                    on Unsplash
+                  </figcaption>
+                </figure>
+              ) : null}
+
+              {section.paragraphs.map((paragraph, index) => (
+                <p key={index}>{renderRichTextNodes(paragraph, sourcesMap)}</p>
+              ))}
+
+              {section.callToAction ? (
+                <p className="font-semibold text-[#2A33A4]">{renderRichTextNodes(section.callToAction, sourcesMap)}</p>
+              ) : null}
+            </section>
+          ))}
+
+          <section className="space-y-3">
+            <h2 className="text-2xl font-semibold text-[#2A33A4]">Conclusion</h2>
+            <p>{renderRichTextNodes(blog.conclusion, sourcesMap)}</p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-2xl font-semibold text-[#2A33A4]">FAQ</h2>
+            {blog.faqs.map((faq, index) => (
+              <div key={index} className="space-y-1">
+                <h3 className="text-lg font-semibold text-[#2A33A4]">{faq.question}</h3>
+                <p className="text-[#2A33A4]/70">{renderRichTextNodes(faq.answer, sourcesMap)}</p>
+              </div>
+            ))}
+          </section>
+
+          <section className="space-y-2">
+            <h2 className="text-2xl font-semibold text-[#2A33A4]">Sources</h2>
+            <ol className="list-decimal space-y-2 pl-6 text-[#2A33A4]/70">
+              {blog.sources.map((source) => (
+                <li key={source.id}>
                   <a
-                    href={`${section.image.photographerProfile}?utm_source=claude_unsplash_generator&utm_medium=referral`}
+                    href={source.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium underline underline-offset-4"
+                    className="underline underline-offset-4"
                   >
-                    {section.image.photographerName}
+                    {source.title}
                   </a>
-                  {" "}on Unsplash
-                </figcaption>
-              </figure>
-            ) : null}
-
-            {section.paragraphs.map((paragraph, index) => (
-              <p key={index}>{renderRichTextNodes(paragraph, sourcesMap)}</p>
-            ))}
-
-            {section.callToAction ? (
-              <p className="font-medium text-primary">{renderRichTextNodes(section.callToAction, sourcesMap)}</p>
-            ) : null}
+                </li>
+              ))}
+            </ol>
           </section>
-        ))}
-
-        <section className="space-y-3">
-          <h2 className="text-2xl font-semibold">Conclusion</h2>
-          <p>{renderRichTextNodes(blog.conclusion, sourcesMap)}</p>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-2xl font-semibold">FAQ</h2>
-          {blog.faqs.map((faq, index) => (
-            <div key={index} className="space-y-1">
-              <h3 className="text-lg font-semibold">{faq.question}</h3>
-              <p className="text-muted-foreground">{renderRichTextNodes(faq.answer, sourcesMap)}</p>
-            </div>
-          ))}
-        </section>
-
-        <section className="space-y-2">
-          <h2 className="text-2xl font-semibold">Sources</h2>
-          <ol className="list-decimal space-y-2 pl-6 text-muted-foreground">
-            {blog.sources.map((source) => (
-              <li key={source.id}>
-                <a href={source.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
-                  {source.title}
-                </a>
-              </li>
-            ))}
-          </ol>
-        </section>
-      </article>
-    </div>
-  );
-}
+        </article>
+      </div>
+    );
+  }

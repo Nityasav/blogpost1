@@ -16,8 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "SEO/GEO Visibility Blog Generator",
-  description:
-    "Generate geo-targeted SEO articles with Claude, Exa, and Unsplash in seconds.",
+  description: "Generate geo-targeted SEO articles with Claude, Exa, and Unsplash in seconds.",
 };
 
 export default function RootLayout({
@@ -27,8 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NuqsAdapter>{children}</NuqsAdapter>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden`}>
+        <NuqsAdapter>
+          <div className="relative flex h-full flex-col">{children}</div>
+        </NuqsAdapter>
       </body>
     </html>
   );

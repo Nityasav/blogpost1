@@ -1,44 +1,84 @@
+import Image from "next/image";
 import { Suspense } from "react";
 import { BlogGeneratorClient } from "@/components/blog-generator/blog-generator-client";
 
-export default function Home() {
-  return (
-    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-6 py-14 lg:px-12">
-      <header className="flex flex-col gap-6 rounded-3xl border border-border bg-card/70 p-10 shadow-sm backdrop-blur">
-        <span className="inline-flex w-fit items-center gap-2 rounded-full bg-accent/60 px-4 py-1 text-xs font-semibold tracking-wide text-accent-foreground">
-          SEO & GEO Visibility
-        </span>
-        <div className="space-y-4">
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-            Generate production-ready geo-targeted SEO blogs in minutes.
-          </h1>
-          <p className="max-w-2xl text-base text-muted-foreground">
-            Connect Claude for premium narrative quality, Unsplash for high-impact imagery, and Exa for authoritative backlinks. Ship YC-ready editorial assets with airtight sourcing and real-time visuals.
-          </p>
-        </div>
-        <ul className="grid gap-3 text-sm text-muted-foreground md:grid-cols-3">
-          <li className="rounded-2xl border border-dashed border-border/70 bg-background/80 p-4">
-            Claude orchestrates title, TL;DR, table of contents, and narrative sections tuned for your primary and secondary keywords.
-          </li>
-          <li className="rounded-2xl border border-dashed border-border/70 bg-background/80 p-4">
-            Exa surfaces live statistics, references, and niche sources; every citation is linkable with trustable context.
-          </li>
-          <li className="rounded-2xl border border-dashed border-border/70 bg-background/80 p-4">
-            Unsplash image prompts refresh per section so visuals match reader intent, with attribution handled automatically.
-          </li>
-        </ul>
-      </header>
+const placeholderCards = [
+  {
+    id: "briefs",
+    label: "Active briefs",
+    value: "12 live",
+    gradient: "from-sky-500/80 via-indigo-500/80 to-purple-500/80",
+  },
+  {
+    id: "research",
+    label: "Research sync",
+    value: "4 new cites",
+    gradient: "from-emerald-500/80 via-lime-500/80 to-emerald-600/80",
+  },
+  {
+    id: "timeline",
+    label: "Publishing queue",
+    value: "Next deploy · 1h",
+    gradient: "from-amber-500/80 via-orange-500/80 to-rose-500/80",
+  },
+];
 
-      <Suspense
-        fallback={
-          <div className="grid gap-4 rounded-3xl border border-border bg-card/50 p-10 shadow-sm">
-            <div className="h-6 w-40 animate-pulse rounded-full bg-muted" />
-            <div className="h-24 animate-pulse rounded-3xl bg-muted" />
+const FillerDashboardColumn = () => (
+  <aside className="hidden lg:block">
+    <div className="sticky top-12 flex flex-col gap-4">
+      {placeholderCards.map((card) => (
+        <div
+          key={card.id}
+          aria-label={`${card.label} placeholder`}
+          className={`rounded-3xl bg-gradient-to-br ${card.gradient} p-4 text-left text-white shadow-lg shadow-black/20`}
+          tabIndex={0}
+        >
+          <p className="text-xs uppercase tracking-[0.3em] text-white/80">{card.label}</p>
+          <p className="pt-2 text-lg font-semibold">{card.value}</p>
+          <div className="mt-4 h-16 rounded-2xl bg-white/20" />
+        </div>
+      ))}
+    </div>
+  </aside>
+);
+
+const SuspenseFallback = () => (
+  <div className="grid gap-4 rounded-3xl border border-border bg-card/60 p-10 shadow-sm">
+    <div className="h-6 w-40 animate-pulse rounded-full bg-muted" />
+    <div className="h-24 animate-pulse rounded-3xl bg-muted" />
+  </div>
+);
+
+const Home = () => {
+  return (
+    <main className="min-h-screen bg-background">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-10 px-4 py-10 lg:px-10">
+        <header className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logo.png"
+              alt="Antifragility logo"
+              width={48}
+              height={48}
+              priority
+              className="rounded-2xl border border-border/40 bg-card p-2"
+            />
+            <div>
+              <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Antifragility</p>
+              <p className="text-base font-semibold text-foreground">Modular Blog OS</p>
+            </div>
           </div>
-        }
-      >
-        <BlogGeneratorClient />
-      </Suspense>
+        </header>
+
+        <div className="grid gap-8 lg:grid-cols-[140px_minmax(0,1fr)]">
+          <FillerDashboardColumn />
+          <Suspense fallback={<SuspenseFallback />}>
+            <BlogGeneratorClient />
+          </Suspense>
+        </div>
+      </div>
     </main>
   );
-}
+};
+
+export default Home;

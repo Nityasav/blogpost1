@@ -88,6 +88,20 @@ const blogDraftSchema = z.object({
 
 type BlogDraft = z.infer<typeof blogDraftSchema>;
 
+const extractJsonSegment = (value: string) => {
+  const startIndex = value.indexOf("{");
+  const endIndex = value.lastIndexOf("}");
+  if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
+    return value;
+  }
+  return value.slice(startIndex, endIndex + 1);
+};
+
+const normalizeJsonText = (value: string) =>
+  value.replace(/\r/g, "").replace(/\u00a0/g, " ").replace(/\u2028|\u2029/g, "");
+
+const describeError = (error: unknown) => (error instanceof Error ? error.message : "unknown error");
+
 export interface BlogSection extends Omit<DraftSection, "imagePrompt"> {
   id: string;
   anchor: string;
@@ -263,20 +277,31 @@ function sanitizeDraftShape(raw: unknown, context: SanitizeContext): unknown {
 
 function decodeClaudeJson(content: string, context: SanitizeContext): BlogDraft {
   const trimmed = content.trim().replace(/^```json\s*/i, "").replace(/```$/i, "").trim();
-  try {
-    const parsed = sanitizeDraftShape(JSON.parse(trimmed), context) as unknown;
+  const normalized = normalizeJsonText(trimmed);
+  const extracted = extractJsonSegment(normalized);
+
+  const parseDraft = (value: string) => {
+    const parsed = sanitizeDraftShape(JSON.parse(value), context) as unknown;
     return blogDraftSchema.parse(parsed);
+  };
+
+  try {
+    return parseDraft(extracted);
   } catch (initialError) {
     try {
-      const repaired = jsonrepair(trimmed);
-      const parsed = sanitizeDraftShape(JSON.parse(repaired), context) as unknown;
-      return blogDraftSchema.parse(parsed);
+      const repaired = jsonrepair(extracted);
+      return parseDraft(repaired);
     } catch (repairError) {
-      throw new Error(
-        `Failed to parse Claude response as JSON. Original error: ${
-          initialError instanceof Error ? initialError.message : "unknown"
-        }; Repair attempt: ${repairError instanceof Error ? repairError.message : "unknown"}`,
-      );
+      try {
+        const normalizedRepair = jsonrepair(normalized);
+        return parseDraft(normalizedRepair);
+      } catch (normalizedError) {
+        throw new Error(
+          `Failed to parse Claude response as JSON. Original error: ${describeError(
+            initialError,
+          )}; Repair attempt: ${describeError(repairError)}; Normalized repair: ${describeError(normalizedError)}`,
+        );
+      }
     }
   }
 }
