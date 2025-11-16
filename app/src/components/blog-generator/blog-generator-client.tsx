@@ -11,7 +11,7 @@ import {
 } from "react";
 import { useQueryStates, parseAsString } from "nuqs";
 import type { BlogGenerationResult } from "@/lib/blog-generator";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/neon-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -158,40 +158,35 @@ export function BlogGeneratorClient() {
       );
     } else {
       body = (
-        <div
-          className="flex min-h-[360px] items-center justify-center rounded-[22px] border border-dashed border-[#2A33A4]/15 bg-white/70 px-6 text-sm text-[#2A33A4]/70"
-          aria-hidden="true"
-        >
+        <div className="flex min-h-[360px] items-center justify-center rounded-[22px] bg-white/75 px-6 text-sm text-[#2A33A4]/70" aria-hidden="true">
           Your generated blog will appear here with the approved outline, TL;DR, FAQ, and source list.
         </div>
       );
     }
 
     return (
-      <div className="flex flex-col gap-4">
-        <div className="overflow-hidden rounded-[28px] border border-white/30 bg-white/70 shadow-inner">
-          <div className="max-h-[60vh] overflow-y-auto overflow-x-hidden scroll-smooth px-8 py-8 md:max-h-[65vh] xl:max-h-[72vh]">
-            {body}
-          </div>
+      <div className="flex flex-col gap-3">
+        <div className="max-h-[60vh] overflow-y-auto overflow-x-hidden scroll-smooth px-6 py-6 md:max-h-[66vh] xl:max-h-[74vh]">
+          {body}
         </div>
       </div>
     );
   }, [blog, editedHtml, error, isGenerating]);
 
   return (
-    <section className="grid gap-6 xl:grid-cols-[minmax(0,520px)_minmax(0,1fr)] xl:items-start">
-      <Card className={cn("rounded-[32px] border text-[#2A33A4] shadow-[0_45px_115px_rgba(42,51,164,0.1)] border-[#2A33A4]/25 bg-white/95 backdrop-blur transition-all duration-700 ease-out", animationClass)}>
-        <CardHeader className="space-y-4">
-          <div className="space-y-2">
-            <CardTitle className="text-2xl font-semibold text-[#2A33A4]">
+    <section className="grid min-h-0 gap-5 xl:grid-cols-[minmax(0,490px)_minmax(0,1fr)] xl:items-start">
+      <Card className={cn("reveal rounded-[30px] border text-[#2A33A4] shadow-[0_40px_105px_rgba(42,51,164,0.1)] border-[#2A33A4]/25 bg-white/95 backdrop-blur transition-all duration-700 ease-out", animationClass)}>
+        <CardHeader className="space-y-3">
+          <div className="space-y-1.5">
+            <CardTitle className="text-xl font-semibold text-[#2A33A4]">
               Configure your article inputs
             </CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="space-y-10 px-10 pb-14">
-          <form className="grid gap-10" onSubmit={handleSubmit} aria-live="polite">
-            <div className="grid gap-6 xl:grid-cols-2">
-              <div className="grid gap-3">
+        <CardContent className="space-y-8 px-8 pb-10">
+          <form className="grid gap-8" onSubmit={handleSubmit} aria-live="polite">
+            <div className="grid gap-5 xl:grid-cols-2">
+              <div className="grid gap-2.5">
                 <Label htmlFor="primary" className="text-[#2A33A4]">
                   Primary keyword *
                 </Label>
@@ -203,7 +198,7 @@ export function BlogGeneratorClient() {
                   required
                 />
               </div>
-              <div className="grid gap-3">
+              <div className="grid gap-2.5">
                 <Label htmlFor="secondary" className="text-[#2A33A4]">
                   Secondary keyword
                 </Label>
@@ -216,7 +211,7 @@ export function BlogGeneratorClient() {
               </div>
             </div>
 
-            <div className="grid gap-4">
+            <div className="grid gap-3">
               <Label htmlFor="prompt" className="text-[#2A33A4]">
                 Prompt to answer *
               </Label>
@@ -231,17 +226,14 @@ export function BlogGeneratorClient() {
               <p className="text-xs text-[#2A33A4]/60">Use a single, declarative sentence to keep the outline formal.</p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <Badge variant="outline" className="tracking-[0.25em] text-[10px]">
-                Data-led · English · Citations & imagery included
-              </Badge>
-              <Button type="submit" disabled={isGenerating} className="min-w-[200px] px-10 py-5 text-base">
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Button type="submit" disabled={isGenerating} className="min-w-[200px] px-9 py-4 text-base">
                 {isGenerating ? (
                   <span className="flex items-center gap-2">
                     <LoadingSpinner /> Generating
                   </span>
                 ) : (
-                  "Generate blog"
+                  <span className="font-semibold">Generate blog</span>
                 )}
               </Button>
             </div>
@@ -249,7 +241,7 @@ export function BlogGeneratorClient() {
         </CardContent>
       </Card>
 
-      <div className="flex flex-col gap-4 rounded-[36px] border border-[#2A33A4]/12 bg-white/75 p-6 shadow-[0_55px_130px_rgba(42,51,164,0.12)] backdrop-blur-lg">
+      <div className="reveal flex h-full min-h-0 flex-col gap-4 rounded-[36px] border border-[#2A33A4]/12 bg-white/78 p-6 shadow-[0_55px_130px_rgba(42,51,164,0.12)] backdrop-blur-lg">
         {previewContent}
       </div>
     </section>

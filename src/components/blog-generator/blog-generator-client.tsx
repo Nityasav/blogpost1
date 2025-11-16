@@ -3,7 +3,7 @@
 import { useCallback, useState, type ChangeEvent, type FormEvent } from "react";
 import { useQueryStates, parseAsString } from "nuqs";
 import type { BlogGenerationResult } from "@/lib/blog-generator";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/neon-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
