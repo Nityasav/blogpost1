@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Suspense, useMemo, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import { BarChart3, Bell, BookOpen, LayoutDashboard, Megaphone, Settings, Sparkles } from "lucide-react";
-import { BlogGeneratorClient } from "@/components/blog-generator/blog-generator-client";
+import { BlogGenerator } from "@/features/blog-generator";
 import { Button } from "@/components/ui/neon-button";
 import { cn } from "@/lib/utils";
 
@@ -59,7 +59,7 @@ const BlogpostPage = () => {
 
     return (
       <Suspense fallback={<SuspenseFallback />}>
-        <BlogGeneratorClient />
+        <BlogGenerator />
       </Suspense>
     );
   }, [activeTab]);
