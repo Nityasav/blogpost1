@@ -16,7 +16,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { serializeBlogArticleHtml } from "./blog-preview";
 import { BlogEditor } from "./blog-editor";
 import { cn } from "@/lib/utils";
@@ -41,7 +40,7 @@ export const BlogGenerator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
-
+ 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
     if (prefersReducedMotion) {
@@ -178,13 +177,24 @@ export const BlogGenerator = () => {
                 <Label htmlFor="primary" className="text-[#2A33A4]">
                   Primary keyword *
                 </Label>
-                <Input id="primary" placeholder="e.g. FX fees" value={query.primary} onChange={handleInputChange("primary")} required />
+                <Input
+                  id="primary"
+                  placeholder="e.g. FX fees"
+                  value={query.primary}
+                  onChange={handleInputChange("primary")}
+                  required
+                />
               </div>
               <div className="grid gap-2.5">
                 <Label htmlFor="secondary" className="text-[#2A33A4]">
                   Secondary keyword
                 </Label>
-                <Input id="secondary" placeholder="e.g. cross-border laws" value={query.secondary} onChange={handleInputChange("secondary")} />
+                <Input
+                  id="secondary"
+                  placeholder="e.g. cross-border laws"
+                  value={query.secondary}
+                  onChange={handleInputChange("secondary")}
+                />
               </div>
             </div>
 

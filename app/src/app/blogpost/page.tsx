@@ -1,30 +1,68 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { Suspense, useMemo, useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { BarChart3, Bell, BookOpen, LayoutDashboard, Megaphone, Settings, Sparkles } from "lucide-react";
+import { Lightbulb, List, Sparkles, BookText, Box } from "lucide-react";
 import { BlogGenerator } from "@/features/blog-generator";
 import { Button } from "@/components/ui/neon-button";
 import { cn } from "@/lib/utils";
-
-const sidebarItems: Array<{ id: string; label: string; icon: LucideIcon; active?: boolean }> = [
-  { id: "overview", label: "Overview", icon: LayoutDashboard },
-  { id: "blogs", label: "Blogs", icon: BookOpen, active: true },
-  { id: "campaigns", label: "Campaigns", icon: Megaphone },
-  { id: "analytics", label: "Analytics", icon: BarChart3 },
-  { id: "automations", label: "Automations", icon: Sparkles },
-  { id: "notifications", label: "Alerts", icon: Bell },
-  { id: "settings", label: "Settings", icon: Settings },
-];
+import { BlogpostShell } from "./_components/blogpost-shell";
 
 type TabId = "create" | "templates";
+
+type TemplateCard = {
+  id: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  href?: string;
+  accent?: string;
+};
 
 const blogNavItems: Array<{ id: TabId; label: string }> = [
   { id: "create", label: "Create" },
   { id: "templates", label: "Templates" },
 ];
+
+const templateCards: TemplateCard[] = [
+  {
+    id: "suggested",
+    title: "Suggested",
+    description: "Use Bear's data insights to auto-suggest",
+    icon: Lightbulb,
+    href: "/blogpost/create/suggested",
+  },
+  {
+    id: "listicle",
+    title: "Listicle",
+    description: "Create a listicle blog post",
+    icon: List,
+    href: "/blogpost/create/listicle",
+  },
+  {
+    id: "how-to",
+    title: "How-To Guide",
+    description: "Step-by-step instructions to accomplish a specific task",
+    icon: Sparkles,
+    href: "/blogpost/create/how-to-guide",
+  },
+  {
+    id: "comparison",
+    title: "Comparison",
+    description: "Compare your solution with competitors",
+    icon: BookText,
+    href: "/blogpost/create/comparison",
+  },
+  {
+    id: "what-is-product",
+    title: "What is product",
+    description: "Explain your product clearly for first-time audiences",
+    icon: Box,
+    href: "/blogpost/create/what-is-product",
+  },
+];
+
+const templateButtonBaseClass = "border border-blue-500/30 bg-white text-blue-700 hover:border-blue-500/50 hover:bg-blue-500/10";
 
 const SuspenseFallback = () => (
   <div className="grid gap-4 rounded-3xl border border-[#2A33A4]/15 bg-white/85 p-10 shadow-[0_25px_65px_rgba(42,51,164,0.08)]">
@@ -43,15 +81,40 @@ const BlogpostPage = () => {
   const renderedContent = useMemo(() => {
     if (activeTab === "templates") {
       return (
-        <div className="flex min-h-[360px] flex-col items-center justify-center gap-4 rounded-[28px] border border-dashed border-[#2A33A4]/20 bg-white/70 px-10 py-12 text-center text-[#1F2A6B]/80 shadow-inner">
-          <p className="text-lg font-semibold text-[#1F2A6B]">Template gallery is in progress</p>
-          <p className="max-w-lg text-sm text-[#1F2A6B]/70">
-            Save your favorite article blueprints, reuse winning structures, and share systems with your team. We are polishing the experience and will ship it shortly.
-          </p>
-          <div className="grid w-full max-w-md gap-3">
-            <div className="h-12 rounded-full bg-[#1F2A6B]/5" />
-            <div className="h-12 rounded-full bg-[#1F2A6B]/5" />
-            <div className="h-12 rounded-full bg-[#1F2A6B]/5" />
+        <div className="flex flex-col gap-5">
+          <div className="space-y-1">
+            <h2 className="text-xl font-semibold text-slate-900">Templates</h2>
+            <p className="text-sm text-slate-500">Generate high quality GEO content in minutes.</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {templateCards.map(({ id, title, description, icon: Icon, accent, href }) => (
+              <article
+                key={id}
+                className="flex flex-col gap-5 rounded-3xl border border-slate-200/60 bg-white/95 p-5 shadow-[0_18px_48px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.12)]"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100">
+                    <Icon className="h-5 w-5 text-slate-600" aria-hidden="true" />
+                  </div>
+                  <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-400">Template</span>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+                  <p className="text-sm text-slate-500">{description}</p>
+                </div>
+                <Button
+                  href={href ?? "/blogpost/create"}
+                  className={cn(
+                    "mt-auto rounded-full px-5 py-2 text-sm",
+                    templateButtonBaseClass,
+                    accent,
+                  )}
+                  aria-label={`Create ${title} blog template`}
+                >
+                  Create
+                </Button>
+              </article>
+            ))}
           </div>
         </div>
       );
@@ -64,91 +127,30 @@ const BlogpostPage = () => {
     );
   }, [activeTab]);
 
-  return (
-    <main className="flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-br from-[#EEF2FF] via-white to-[#F8FAFF]">
-      <header className="reveal mx-auto w-full max-w-[1920px] px-3 pt-4 lg:px-6">
-        <div className="flex items-center justify-between rounded-3xl border border-white/60 bg-white/80 p-3.5 shadow-[0_30px_80px_rgba(42,51,164,0.07)] backdrop-blur">
-          <div className="flex items-center gap-3">
-            <Image
-              src="/logo.png"
-              alt="Antifragility logo"
-              width={48}
-              height={48}
-              priority
-              className="rounded-2xl border border-[#2A33A4]/15 bg-white p-2 shadow-sm"
-            />
-            <div>
-              <p className="text-xs uppercase tracking-[0.4em] text-[#6B7280]">Antifragility</p>
-              <p className="text-lg font-semibold text-[#1F2A6B]">Modular Intelligence Platform</p>
-            </div>
-          </div>
+  const topBar = (
+    <div className="flex flex-wrap items-center justify-start gap-2">
+      {blogNavItems.map(({ id, label }) => {
+        const isActive = activeTab === id;
+        return (
           <Button
-            href="https://www.antifragilitylabs.com"
-            target="_blank"
-            rel="noreferrer"
+            key={id}
+            onClick={handleTabSelect(id)}
+            aria-pressed={isActive}
             variant="ghost"
-            className="rounded-full border border-transparent px-4 py-2 text-sm text-[#1F2A6B] hover:border-[#1F2A6B]/20"
+            className={cn(
+              "rounded-full px-4 py-2 text-sm shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F2A6B]/30",
+              templateButtonBaseClass,
+              isActive && "border-[#1F2A6B] bg-[#1F2A6B] text-white hover:bg-[#1F2A6B] hover:text-white",
+            )}
           >
-            View company profile
+            {label}
           </Button>
-        </div>
-      </header>
-
-      <section className="mx-auto w-full max-w-[1920px] flex-1 px-3 pb-4 lg:px-6 lg:min-h-0">
-        <div className="mt-6 grid gap-4 lg:grid-cols-[80px_minmax(0,1fr)] lg:min-h-0">
-          <aside className="reveal-delay-1 hidden lg:flex">
-            <nav
-              aria-label="Primary navigation"
-              className="flex h-full w-full flex-col items-center gap-4 rounded-3xl border border-white/60 bg-white/75 p-4 shadow-[0_30px_85px_rgba(42,51,164,0.08)] backdrop-blur"
-            >
-              {sidebarItems.map(({ id, icon: Icon, label, active }) => (
-                <Link key={id} href="#" aria-label={label} className="w-full">
-                  <span
-                    tabIndex={0}
-                    className={cn(
-                      "flex w-full items-center justify-center rounded-2xl border border-transparent bg-white/40 p-3 text-[#1F2A6B]/70 transition hover:border-[#1F2A6B]/20 hover:text-[#1F2A6B]",
-                      active ? "bg-[#1F2A6B] text-white shadow-lg shadow-[#1F2A6B]/30" : "",
-                    )}
-                  >
-                    <Icon className="h-5 w-5 lg:h-6 lg:w-6" aria-hidden="true" />
-                  </span>
-                </Link>
-              ))}
-            </nav>
-          </aside>
-
-          <section className="flex min-h-0 flex-1 flex-col gap-4">
-            <div className="reveal flex flex-wrap items-center justify-start gap-1 rounded-3xl bg-white/85 p-3 shadow-[0_30px_80px_rgba(42,51,164,0.08)] backdrop-blur">
-              <div className="flex flex-wrap gap-2">
-                {blogNavItems.map(({ id, label }) => {
-                  const isActive = activeTab === id;
-                  return (
-                    <Button
-                      key={id}
-                      onClick={handleTabSelect(id)}
-                      aria-pressed={isActive}
-                      variant="ghost"
-                      className={cn(
-                        "rounded-full px-4 py-2 text-sm shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F2A6B]/30",
-                        isActive
-                          ? "bg-white text-[#1F2A6B] font-semibold hover:bg-white"
-                          : "border border-transparent text-[#1F2A6B]/80 hover:border-[#1F2A6B]/20 hover:bg-white/60 hover:text-[#1F2A6B]",
-                      )}
-                    >
-                      {label}
-                    </Button>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="reveal-delay-2 flex-1 overflow-hidden rounded-[32px] bg-white/85 p-5 shadow-[0_40px_110px_rgba(42,51,164,0.12)] backdrop-blur">
-              {renderedContent}
-            </div>
-          </section>
-        </div>
-      </section>
-    </main>
+        );
+      })}
+    </div>
   );
+
+  return <BlogpostShell topBar={topBar}>{renderedContent}</BlogpostShell>;
 };
 
 export default BlogpostPage;
