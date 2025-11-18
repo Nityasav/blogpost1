@@ -55,7 +55,7 @@ const templateCards: TemplateCard[] = [
   },
   {
     id: "what-is-product",
-    title: "What is product",
+    title: "What is it?",
     description: "Explain your product clearly for first-time audiences",
     icon: Box,
     href: "/blogpost/create/what-is-product",

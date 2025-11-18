@@ -73,3 +73,4 @@ export async function GET(request: Request) {
 
   return NextResponse.json(templates[templateId], { status: 200 });
 }
+

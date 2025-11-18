@@ -90,7 +90,7 @@ const WhatIsProductCreatePage = () => {
               <div className="flex flex-col gap-1 text-left">
                 <span className="flex items-center gap-2 text-sm font-semibold text-[#1F2A6B]">
                   <Sparkles className="h-4 w-4" aria-hidden="true" />
-                  What is product
+                  What is it?
                 </span>
                 <span className="text-xs text-[#1F2A6B]/70">Perfect for educational one-pagers and landing page hero copy.</span>
               </div>
